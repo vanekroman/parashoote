@@ -16,5 +16,8 @@ all:
 flash:
 	$(ARDUINO_ENV) arduino-cli upload --fqbn $(BOARD) --build-path $(BUILD-PATH) --port $(PORT)
 
+monitor:
+	arduino-cli monitor --port $(PORT) --fqbn $(BOARD) --config 9600
+
 clean:
 	rm -rf build
