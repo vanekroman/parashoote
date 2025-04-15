@@ -46,7 +46,6 @@ void setup() {
   Serial.println("Available commands:");
   Serial.println("- READ_DATA: Read the stored fall acceleration data");
   Serial.println("- CLEAR_DATA: Clear all stored data from EEPROM");
-  Serial.println("- SPARK: Detonate Activeate");
 }
 
 void loop() {
@@ -92,7 +91,7 @@ void loop() {
   //    digitalWrite(led_pin, LOW);
   //    delay(500);
   //}
-  digitalWrite(detonator_pin, detonatorActive);
+  //digitalWrite(detonator_pin, detonatorActive);
   
   // Deactivate the detonator after some time
   if (detonatorActive == true && millis() - fallStartTime >= TIME_TURN_OFF_MS + TIME_FALL_MS) {

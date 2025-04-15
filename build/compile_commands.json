@@ -113,36 +113,6 @@
    "-DARDUINO_ARCH_AVR",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
-   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/PluggableUSB.cpp",
-   "-o",
-   "/Users/romis/Documents/code/parashute/build/core/PluggableUSB.cpp.o"
-  ],
-  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/PluggableUSB.cpp"
- },
- {
-  "directory": "/Users/romis/Documents/code/parashute",
-  "arguments": [
-   "/Users/romis/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-g++",
-   "-c",
-   "-g",
-   "-Os",
-   "-w",
-   "-std=gnu++11",
-   "-fpermissive",
-   "-fno-exceptions",
-   "-ffunction-sections",
-   "-fdata-sections",
-   "-fno-threadsafe-statics",
-   "-Wno-error=narrowing",
-   "-MMD",
-   "-flto",
-   "-mmcu=atmega328p",
-   "-DF_CPU=16000000L",
-   "-DARDUINO=10607",
-   "-DARDUINO_AVR_NANO",
-   "-DARDUINO_ARCH_AVR",
-   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
-   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
    "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/CDC.cpp",
    "-o",
    "/Users/romis/Documents/code/parashute/build/core/CDC.cpp.o"
@@ -203,11 +173,11 @@
    "-DARDUINO_ARCH_AVR",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
-   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/HardwareSerial0.cpp",
+   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/PluggableUSB.cpp",
    "-o",
-   "/Users/romis/Documents/code/parashute/build/core/HardwareSerial0.cpp.o"
+   "/Users/romis/Documents/code/parashute/build/core/PluggableUSB.cpp.o"
   ],
-  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/HardwareSerial0.cpp"
+  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/PluggableUSB.cpp"
  },
  {
   "directory": "/Users/romis/Documents/code/parashute",
@@ -263,66 +233,6 @@
    "-DARDUINO_ARCH_AVR",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
-   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/IPAddress.cpp",
-   "-o",
-   "/Users/romis/Documents/code/parashute/build/core/IPAddress.cpp.o"
-  ],
-  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/IPAddress.cpp"
- },
- {
-  "directory": "/Users/romis/Documents/code/parashute",
-  "arguments": [
-   "/Users/romis/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-g++",
-   "-c",
-   "-g",
-   "-Os",
-   "-w",
-   "-std=gnu++11",
-   "-fpermissive",
-   "-fno-exceptions",
-   "-ffunction-sections",
-   "-fdata-sections",
-   "-fno-threadsafe-statics",
-   "-Wno-error=narrowing",
-   "-MMD",
-   "-flto",
-   "-mmcu=atmega328p",
-   "-DF_CPU=16000000L",
-   "-DARDUINO=10607",
-   "-DARDUINO_AVR_NANO",
-   "-DARDUINO_ARCH_AVR",
-   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
-   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
-   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/HardwareSerial2.cpp",
-   "-o",
-   "/Users/romis/Documents/code/parashute/build/core/HardwareSerial2.cpp.o"
-  ],
-  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/HardwareSerial2.cpp"
- },
- {
-  "directory": "/Users/romis/Documents/code/parashute",
-  "arguments": [
-   "/Users/romis/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-g++",
-   "-c",
-   "-g",
-   "-Os",
-   "-w",
-   "-std=gnu++11",
-   "-fpermissive",
-   "-fno-exceptions",
-   "-ffunction-sections",
-   "-fdata-sections",
-   "-fno-threadsafe-statics",
-   "-Wno-error=narrowing",
-   "-MMD",
-   "-flto",
-   "-mmcu=atmega328p",
-   "-DF_CPU=16000000L",
-   "-DARDUINO=10607",
-   "-DARDUINO_AVR_NANO",
-   "-DARDUINO_ARCH_AVR",
-   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
-   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
    "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/Print.cpp",
    "-o",
    "/Users/romis/Documents/code/parashute/build/core/Print.cpp.o"
@@ -353,11 +263,11 @@
    "-DARDUINO_ARCH_AVR",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
-   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/Stream.cpp",
+   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/HardwareSerial0.cpp",
    "-o",
-   "/Users/romis/Documents/code/parashute/build/core/Stream.cpp.o"
+   "/Users/romis/Documents/code/parashute/build/core/HardwareSerial0.cpp.o"
   ],
-  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/Stream.cpp"
+  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/HardwareSerial0.cpp"
  },
  {
   "directory": "/Users/romis/Documents/code/parashute",
@@ -413,68 +323,11 @@
    "-DARDUINO_ARCH_AVR",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
-   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/abi.cpp",
+   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/Stream.cpp",
    "-o",
-   "/Users/romis/Documents/code/parashute/build/core/abi.cpp.o"
+   "/Users/romis/Documents/code/parashute/build/core/Stream.cpp.o"
   ],
-  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/abi.cpp"
- },
- {
-  "directory": "/Users/romis/Documents/code/parashute",
-  "arguments": [
-   "/Users/romis/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-g++",
-   "-c",
-   "-g",
-   "-Os",
-   "-w",
-   "-std=gnu++11",
-   "-fpermissive",
-   "-fno-exceptions",
-   "-ffunction-sections",
-   "-fdata-sections",
-   "-fno-threadsafe-statics",
-   "-Wno-error=narrowing",
-   "-MMD",
-   "-flto",
-   "-mmcu=atmega328p",
-   "-DF_CPU=16000000L",
-   "-DARDUINO=10607",
-   "-DARDUINO_AVR_NANO",
-   "-DARDUINO_ARCH_AVR",
-   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
-   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
-   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/WMath.cpp",
-   "-o",
-   "/Users/romis/Documents/code/parashute/build/core/WMath.cpp.o"
-  ],
-  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/WMath.cpp"
- },
- {
-  "directory": "/Users/romis/Documents/code/parashute",
-  "arguments": [
-   "/Users/romis/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-gcc",
-   "-c",
-   "-g",
-   "-Os",
-   "-w",
-   "-std=gnu11",
-   "-ffunction-sections",
-   "-fdata-sections",
-   "-MMD",
-   "-flto",
-   "-fno-fat-lto-objects",
-   "-mmcu=atmega328p",
-   "-DF_CPU=16000000L",
-   "-DARDUINO=10607",
-   "-DARDUINO_AVR_NANO",
-   "-DARDUINO_ARCH_AVR",
-   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
-   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
-   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/hooks.c",
-   "-o",
-   "/Users/romis/Documents/code/parashute/build/core/hooks.c.o"
-  ],
-  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/hooks.c"
+  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/Stream.cpp"
  },
  {
   "directory": "/Users/romis/Documents/code/parashute",
@@ -557,11 +410,11 @@
    "-DARDUINO_ARCH_AVR",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
-   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/main.cpp",
+   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/USBCore.cpp",
    "-o",
-   "/Users/romis/Documents/code/parashute/build/core/main.cpp.o"
+   "/Users/romis/Documents/code/parashute/build/core/USBCore.cpp.o"
   ],
-  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/main.cpp"
+  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/USBCore.cpp"
  },
  {
   "directory": "/Users/romis/Documents/code/parashute",
@@ -587,11 +440,98 @@
    "-DARDUINO_ARCH_AVR",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
-   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/WString.cpp",
+   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/WMath.cpp",
    "-o",
-   "/Users/romis/Documents/code/parashute/build/core/WString.cpp.o"
+   "/Users/romis/Documents/code/parashute/build/core/WMath.cpp.o"
   ],
-  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/WString.cpp"
+  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/WMath.cpp"
+ },
+ {
+  "directory": "/Users/romis/Documents/code/parashute",
+  "arguments": [
+   "/Users/romis/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-g++",
+   "-c",
+   "-g",
+   "-Os",
+   "-w",
+   "-std=gnu++11",
+   "-fpermissive",
+   "-fno-exceptions",
+   "-ffunction-sections",
+   "-fdata-sections",
+   "-fno-threadsafe-statics",
+   "-Wno-error=narrowing",
+   "-MMD",
+   "-flto",
+   "-mmcu=atmega328p",
+   "-DF_CPU=16000000L",
+   "-DARDUINO=10607",
+   "-DARDUINO_AVR_NANO",
+   "-DARDUINO_ARCH_AVR",
+   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
+   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
+   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/abi.cpp",
+   "-o",
+   "/Users/romis/Documents/code/parashute/build/core/abi.cpp.o"
+  ],
+  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/abi.cpp"
+ },
+ {
+  "directory": "/Users/romis/Documents/code/parashute",
+  "arguments": [
+   "/Users/romis/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-gcc",
+   "-c",
+   "-g",
+   "-Os",
+   "-w",
+   "-std=gnu11",
+   "-ffunction-sections",
+   "-fdata-sections",
+   "-MMD",
+   "-flto",
+   "-fno-fat-lto-objects",
+   "-mmcu=atmega328p",
+   "-DF_CPU=16000000L",
+   "-DARDUINO=10607",
+   "-DARDUINO_AVR_NANO",
+   "-DARDUINO_ARCH_AVR",
+   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
+   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
+   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/hooks.c",
+   "-o",
+   "/Users/romis/Documents/code/parashute/build/core/hooks.c.o"
+  ],
+  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/hooks.c"
+ },
+ {
+  "directory": "/Users/romis/Documents/code/parashute",
+  "arguments": [
+   "/Users/romis/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-g++",
+   "-c",
+   "-g",
+   "-Os",
+   "-w",
+   "-std=gnu++11",
+   "-fpermissive",
+   "-fno-exceptions",
+   "-ffunction-sections",
+   "-fdata-sections",
+   "-fno-threadsafe-statics",
+   "-Wno-error=narrowing",
+   "-MMD",
+   "-flto",
+   "-mmcu=atmega328p",
+   "-DF_CPU=16000000L",
+   "-DARDUINO=10607",
+   "-DARDUINO_AVR_NANO",
+   "-DARDUINO_ARCH_AVR",
+   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
+   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
+   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/HardwareSerial2.cpp",
+   "-o",
+   "/Users/romis/Documents/code/parashute/build/core/HardwareSerial2.cpp.o"
+  ],
+  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/HardwareSerial2.cpp"
  },
  {
   "directory": "/Users/romis/Documents/code/parashute",
@@ -647,11 +587,11 @@
    "-DARDUINO_ARCH_AVR",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
-   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/USBCore.cpp",
+   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/main.cpp",
    "-o",
-   "/Users/romis/Documents/code/parashute/build/core/USBCore.cpp.o"
+   "/Users/romis/Documents/code/parashute/build/core/main.cpp.o"
   ],
-  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/USBCore.cpp"
+  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/main.cpp"
  },
  {
   "directory": "/Users/romis/Documents/code/parashute",
@@ -679,29 +619,6 @@
    "/Users/romis/Documents/code/parashute/build/core/wiring.c.o"
   ],
   "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/wiring.c"
- },
- {
-  "directory": "/Users/romis/Documents/code/parashute",
-  "arguments": [
-   "/Users/romis/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-gcc",
-   "-c",
-   "-g",
-   "-x",
-   "assembler-with-cpp",
-   "-flto",
-   "-MMD",
-   "-mmcu=atmega328p",
-   "-DF_CPU=16000000L",
-   "-DARDUINO=10607",
-   "-DARDUINO_AVR_NANO",
-   "-DARDUINO_ARCH_AVR",
-   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
-   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
-   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/wiring_pulse.S",
-   "-o",
-   "/Users/romis/Documents/code/parashute/build/core/wiring_pulse.S.o"
-  ],
-  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/wiring_pulse.S"
  },
  {
   "directory": "/Users/romis/Documents/code/parashute",
@@ -763,14 +680,10 @@
    "/Users/romis/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-gcc",
    "-c",
    "-g",
-   "-Os",
-   "-w",
-   "-std=gnu11",
-   "-ffunction-sections",
-   "-fdata-sections",
-   "-MMD",
+   "-x",
+   "assembler-with-cpp",
    "-flto",
-   "-fno-fat-lto-objects",
+   "-MMD",
    "-mmcu=atmega328p",
    "-DF_CPU=16000000L",
    "-DARDUINO=10607",
@@ -778,11 +691,71 @@
    "-DARDUINO_ARCH_AVR",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
    "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
-   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/wiring_pulse.c",
+   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/wiring_pulse.S",
    "-o",
-   "/Users/romis/Documents/code/parashute/build/core/wiring_pulse.c.o"
+   "/Users/romis/Documents/code/parashute/build/core/wiring_pulse.S.o"
   ],
-  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/wiring_pulse.c"
+  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/wiring_pulse.S"
+ },
+ {
+  "directory": "/Users/romis/Documents/code/parashute",
+  "arguments": [
+   "/Users/romis/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-g++",
+   "-c",
+   "-g",
+   "-Os",
+   "-w",
+   "-std=gnu++11",
+   "-fpermissive",
+   "-fno-exceptions",
+   "-ffunction-sections",
+   "-fdata-sections",
+   "-fno-threadsafe-statics",
+   "-Wno-error=narrowing",
+   "-MMD",
+   "-flto",
+   "-mmcu=atmega328p",
+   "-DF_CPU=16000000L",
+   "-DARDUINO=10607",
+   "-DARDUINO_AVR_NANO",
+   "-DARDUINO_ARCH_AVR",
+   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
+   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
+   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/WString.cpp",
+   "-o",
+   "/Users/romis/Documents/code/parashute/build/core/WString.cpp.o"
+  ],
+  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/WString.cpp"
+ },
+ {
+  "directory": "/Users/romis/Documents/code/parashute",
+  "arguments": [
+   "/Users/romis/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-g++",
+   "-c",
+   "-g",
+   "-Os",
+   "-w",
+   "-std=gnu++11",
+   "-fpermissive",
+   "-fno-exceptions",
+   "-ffunction-sections",
+   "-fdata-sections",
+   "-fno-threadsafe-statics",
+   "-Wno-error=narrowing",
+   "-MMD",
+   "-flto",
+   "-mmcu=atmega328p",
+   "-DF_CPU=16000000L",
+   "-DARDUINO=10607",
+   "-DARDUINO_AVR_NANO",
+   "-DARDUINO_ARCH_AVR",
+   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
+   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
+   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/IPAddress.cpp",
+   "-o",
+   "/Users/romis/Documents/code/parashute/build/core/IPAddress.cpp.o"
+  ],
+  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/IPAddress.cpp"
  },
  {
   "directory": "/Users/romis/Documents/code/parashute",
@@ -810,5 +783,32 @@
    "/Users/romis/Documents/code/parashute/build/core/wiring_shift.c.o"
   ],
   "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/wiring_shift.c"
+ },
+ {
+  "directory": "/Users/romis/Documents/code/parashute",
+  "arguments": [
+   "/Users/romis/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-gcc",
+   "-c",
+   "-g",
+   "-Os",
+   "-w",
+   "-std=gnu11",
+   "-ffunction-sections",
+   "-fdata-sections",
+   "-MMD",
+   "-flto",
+   "-fno-fat-lto-objects",
+   "-mmcu=atmega328p",
+   "-DF_CPU=16000000L",
+   "-DARDUINO=10607",
+   "-DARDUINO_AVR_NANO",
+   "-DARDUINO_ARCH_AVR",
+   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino",
+   "-I/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/variants/eightanaloginputs",
+   "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/wiring_pulse.c",
+   "-o",
+   "/Users/romis/Documents/code/parashute/build/core/wiring_pulse.c.o"
+  ],
+  "file": "/Users/romis/Library/Arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/wiring_pulse.c"
  }
 ]

@@ -31,21 +31,21 @@ bool commandComplete = false;
 
 #line 30 "/Users/romis/Documents/code/parashute/parashute.ino"
 void setup();
-#line 55 "/Users/romis/Documents/code/parashute/parashute.ino"
+#line 51 "/Users/romis/Documents/code/parashute/parashute.ino"
 void loop();
-#line 136 "/Users/romis/Documents/code/parashute/parashute.ino"
+#line 132 "/Users/romis/Documents/code/parashute/parashute.ino"
 void storeAccelerationData();
-#line 181 "/Users/romis/Documents/code/parashute/parashute.ino"
+#line 177 "/Users/romis/Documents/code/parashute/parashute.ino"
 void writeEEPROM(int address, byte data);
-#line 191 "/Users/romis/Documents/code/parashute/parashute.ino"
+#line 187 "/Users/romis/Documents/code/parashute/parashute.ino"
 byte readEEPROM(int address);
-#line 205 "/Users/romis/Documents/code/parashute/parashute.ino"
+#line 201 "/Users/romis/Documents/code/parashute/parashute.ino"
 void readSerialCommand();
-#line 218 "/Users/romis/Documents/code/parashute/parashute.ino"
+#line 214 "/Users/romis/Documents/code/parashute/parashute.ino"
 void processCommand();
-#line 236 "/Users/romis/Documents/code/parashute/parashute.ino"
+#line 232 "/Users/romis/Documents/code/parashute/parashute.ino"
 void readStoredData();
-#line 284 "/Users/romis/Documents/code/parashute/parashute.ino"
+#line 280 "/Users/romis/Documents/code/parashute/parashute.ino"
 void clearStoredData();
 #line 30 "/Users/romis/Documents/code/parashute/parashute.ino"
 void setup() {
@@ -53,6 +53,7 @@ void setup() {
   pinMode(detonator_pin, OUTPUT);
   digitalWrite(detonator_pin, LOW);
   Wire.begin();
+  Wire.setClock(400000UL);
   
   // Initialize MPU6050
   Wire.beginTransmission(MPU);
@@ -61,11 +62,6 @@ void setup() {
   Wire.endTransmission(true);
   
   Serial.begin(9600);
-  digitalWrite(led_pin, HIGH);
-  digitalWrite(led_buildin, HIGH);
-  delay(2000);
-  digitalWrite(led_pin, LOW);
-  digitalWrite(led_buildin, LOW);
   
   Serial.println("Fall detection system initialized");
   Serial.println("Available commands:");
@@ -110,13 +106,13 @@ void loop() {
   }
   
   // Control the LED based on FALL_DETECTED
-  if (FALL_DETECTED && dataStored) {
-      digitalWrite(led_pin, HIGH);
-      delay(500);
-      digitalWrite(led_pin, LOW);
-      delay(500);
-  }
-  //digitalWrite(detonator_pin, detonatorActive);
+  //if (FALL_DETECTED && dataStored) {
+  //    digitalWrite(led_pin, HIGH);
+  //    delay(500);
+  //    digitalWrite(led_pin, LOW);
+  //    delay(500);
+  //}
+  digitalWrite(detonator_pin, detonatorActive);
   
   // Deactivate the detonator after some time
   if (detonatorActive == true && millis() - fallStartTime >= TIME_TURN_OFF_MS + TIME_FALL_MS) {
@@ -150,7 +146,7 @@ void loop() {
   readSerialCommand();
   processCommand();
   
-  delay(1);
+  //delay(1);
 }
 
 // Function to store acceleration data to EEPROM
@@ -192,7 +188,7 @@ void storeAccelerationData() {
     writeEEPROM(eepromWriteAddr, AcZ & 0xFF); eepromWriteAddr++;
     
     // Brief delay between samples
-    delay(10);
+    delay(1);
   }
   
   Serial.println("Data stored successfully!");
@@ -205,7 +201,7 @@ void writeEEPROM(int address, byte data) {
   Wire.write(address & 0xFF);  // Low byte of address (LSB)
   Wire.write(data);
   Wire.endTransmission();
-  delay(5);  // Small delay for write cycle to complete
+  delay(1);  // Small delay for write cycle to complete
 }
 
 // Function to read a byte from EEPROM

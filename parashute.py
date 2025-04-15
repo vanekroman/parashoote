@@ -102,7 +102,7 @@ def visualize_data(data, save_path=None):
     ay = np.array(accel_y) / 16384.0
     az = np.array(accel_z) / 16384.0
 
-    a_total = np.sqrt(ax * ax + ay * ay + az * az) / 3
+    a_total = np.sqrt(ax * ax + ay * ay + az * az)
 
     # Create figure and subplots
     plt.figure(figsize=(12, 10))
@@ -172,6 +172,7 @@ def main():
     parser.add_argument("port", help="Serial port to connect to (e.g., COM3 or /dev/ttyUSB0)")
     parser.add_argument("--baudrate", type=int, default=9600, help="Baud rate (default: 9600)")
     parser.add_argument("--timeout", type=int, default=10, help="Timeout in seconds (default: 10)")
+    parser.add_argument("--plot-csv", default="./accel_data", help="Do not display graph")
     parser.add_argument("--no-graph", action="store_true", help="Do not display graph")
     parser.add_argument("--save-csv", action="store_true", help="Save data to CSV file")
     parser.add_argument("--save-graph", action="store_true", help="Save graph to file")
@@ -187,26 +188,29 @@ def main():
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
     # Read data from Arduino
-    data = read_acceleration_data(args.port, args.baudrate, args.timeout)
+    if not args.plot_csv:
+        data = read_acceleration_data(args.port, args.baudrate, args.timeout)
 
-    if data:
-        print(f"Received {len(data)} data points")
+        if data:
+            print(f"Received {len(data)} data points")
 
-        # Save to CSV if requested
-        if args.save_csv:
-            csv_path = os.path.join(args.output_dir, f"accel_data_{timestamp}.csv")
-            save_to_csv(data, csv_path)
+            # Save to CSV if requested
+            if args.save_csv:
+                csv_path = os.path.join(args.output_dir, f"accel_data_{timestamp}.csv")
+                save_to_csv(data, csv_path)
 
-        # Show graph if not disabled
-        if not args.no_graph:
-            graph_path = None
-            if args.save_graph:
-                graph_path = os.path.join(args.output_dir, f"accel_graph_{timestamp}.png")
+            # Show graph if not disabled
+            if not args.no_graph:
+                graph_path = None
+                if args.save_graph:
+                    graph_path = os.path.join(args.output_dir, f"accel_graph_{timestamp}.png")
 
-            visualize_data(data, graph_path)
-    else:
-        print("Failed to get valid data from Arduino")
-        return 1
+                visualize_data(data, graph_path)
+        else:
+            print("Failed to get valid data from Arduino")
+            return 1
+    # else
+    # read data from csv
 
     return 0
 
