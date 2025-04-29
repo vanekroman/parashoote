@@ -1,5 +1,5 @@
 BOARD?=arduino:avr:nano:cpu=atmega328old
-PORT?=/dev/cu.usbserial-110 
+PORT?=/dev/cu.usbserial-10 
 
 BUILD-PATH?=build
 

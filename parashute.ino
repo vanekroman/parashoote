@@ -76,42 +76,29 @@ void loop() {
       digitalWrite(led_pin, FALL_DETECTED);
 
       // Store data to EEPROM if not already stored
-      if (!dataStored) {
-        storeAccelerationData();
-        dataStored = true;
-      }
+      //if (!dataStored) {
+      //  storeAccelerationData();
+      //  dataStored = true;
+      //}
     }
   } else if (ACC_MAGNITUDE > FALL_TRESHOLD_VALUE) {
     fallConditionMet = false;  // Reset the condition tracker, but not FALL_DETECTED
   }
   
   // Control the LED based on FALL_DETECTED
-  //if (FALL_DETECTED && dataStored) {
-  //    digitalWrite(led_pin, HIGH);
-  //    delay(500);
-  //    digitalWrite(led_pin, LOW);
-  //    delay(500);
-  //}
+  if (FALL_DETECTED && dataStored) {
+      digitalWrite(led_pin, HIGH);
+      delay(500);
+      digitalWrite(led_pin, LOW);
+      delay(500);
+  }
+  
   digitalWrite(detonator_pin, detonatorActive);
   
   // Deactivate the detonator after some time
   if (detonatorActive == true && millis() - fallStartTime >= TIME_TURN_OFF_MS + TIME_FALL_MS) {
     detonatorActive = false;
   }
-  
-  // Track max acceleration values (unchanged)
-  //int max_measured_acc_X = 0;
-  //int max_measured_acc_Y = 0;
-  //int max_measured_acc_Z = 0;
-  //if (AcX > max_measured_acc_X) {
-  //  max_measured_acc_X = AcX;
-  //}
-  //if (AcY > max_measured_acc_Y) {
-  //  max_measured_acc_Y = AcY;
-  //}
-  //if (AcZ > max_measured_acc_Z) {
-  //  max_measured_acc_Z = AcZ;
-  //}
   
   // Print time and sensor data
   if (FALL_DETECTED == false) {
@@ -125,8 +112,6 @@ void loop() {
   // Check for serial commands
   readSerialCommand();
   processCommand();
-  
-  //delay(1);
 }
 
 // Function to store acceleration data to EEPROM
