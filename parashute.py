@@ -1,219 +1,157 @@
-# Make sure to install pyserial with: pip install pyserial
 import argparse
-import csv
-import os
 import time
-from datetime import datetime
 
 import matplotlib.pyplot as plt
 import numpy as np
-import serial  # This is the correct import for pyserial
+import serial
 
 
-def read_acceleration_data(port, baudrate=9600, timeout=5):
+def read_and_plot_data(port, baudrate=115200, range=8, timeout=1):
     """
-    Connect to Arduino via serial, send READ_DATA command, and parse the received data
+    Read accelerometer data from serial port and plot it
     """
-    print(f"Connecting to Arduino on {port} at {baudrate} baud...")
+    print(f"Opening serial port {port} at {baudrate} baud...")
 
     try:
         # Open serial connection
-        ser = serial.Serial(port, baudrate, timeout=1)
-        time.sleep(2)  # Wait for connection to establish
+        ser = serial.Serial(port, baudrate, timeout=timeout)
+        time.sleep(2)  # Allow time for connection to establish
 
-        # Clear any pending data
-        ser.reset_input_buffer()
-
-        # Send READ_DATA command
+        # Send command to read data
         print("Sending READ_DATA command...")
         ser.write(b"READ_DATA\n")
 
-        # Wait for response
-        time.sleep(1)
+        # Initialize variables for data collection
+        accel_x = []
+        accel_y = []
+        accel_z = []
+        indices = []
+        collecting = False
+        time_scale_us = 1000  # Default time scale in microseconds
 
-        # Read data until timeout or until we stop receiving data
-        print("Reading response...")
-        start_time = time.time()
-        lines = []
-        data_started = False
-        data_ended = False
+        print("Waiting for data...")
 
-        while (time.time() - start_time) < timeout and not data_ended:
-            if ser.in_waiting > 0:
-                line = ser.readline().decode("utf-8").strip()
-                print(f"Received: {line}")
+        # Read data until "End of data" is received
+        while True:
+            line = ser.readline().decode("utf-8").strip()
 
-                if line == "Reading fall data from EEPROM:":
-                    data_started = True
-                elif line == "End of data" and data_started:
-                    data_ended = True
-                elif data_started and "Index,AccX,AccY,AccZ" not in line and line:
-                    # Check if line matches expected format (digit,digit,digit,digit)
-                    if line.replace("-", "").replace(",", "").isdigit() or all(part.strip().replace("-", "").isdigit() for part in line.split(",")):
-                        lines.append(line)
-            else:
-                time.sleep(0.1)
+            if not line:
+                continue
 
-        # Close serial connection
+            print(f"Received: {line}")
+
+            # Check if we've started receiving the data
+            if "Reading fall data from EEPROM" in line:
+                collecting = True
+                continue
+
+            # Check for time scale information
+            if "Time scale between data:" in line:
+                try:
+                    time_scale_str = line.split(":")[1].strip()
+                    time_scale_us = int(time_scale_str.split()[0])
+                    print(f"Time scale between samples: {time_scale_us} microseconds")
+                except (IndexError, ValueError) as e:
+                    print(f"Error parsing time scale: {e}")
+                continue
+
+            # Check if we've reached the end of data
+            if "End of data" in line:
+                break
+
+            # Skip other metadata lines
+            if collecting and "Number of records" in line:
+                continue
+
+            # Parse data lines
+            if collecting and line[0].isdigit():
+                try:
+                    # Split the line to get index and values
+                    parts = line.split(",", 1)
+
+                    if len(parts) == 2:
+                        idx = int(parts[0])
+                        vals = parts[1].split(",")
+
+                        if len(vals) == 3:
+                            x = int(vals[0])
+                            y = int(vals[1])
+                            z = int(vals[2])
+
+                            indices.append(idx)
+                            accel_x.append(x)
+                            accel_y.append(y)
+                            accel_z.append(z)
+                except ValueError as e:
+                    print(f"Error parsing line: {line}, Error: {e}")
+
         ser.close()
 
-        if not lines:
-            print("No valid data received. Make sure the Arduino is sending data in the expected format.")
-            return None
+        # Convert lists to numpy arrays
+        indices = np.array(indices)
+        accel_x = np.array(accel_x)
+        accel_y = np.array(accel_y)
+        accel_z = np.array(accel_z)
 
-        # Parse data
-        data = []
-        for line in lines:
-            # Split by comma and convert to integers
-            parts = line.split(",")
-            if len(parts) >= 4:
-                try:
-                    row = [int(parts[0]), int(parts[1]), int(parts[2]), int(parts[3])]
-                    data.append(row)
-                except ValueError:
-                    print(f"Skipping invalid line: {line}")
+        # Create time array in milliseconds
+        time_ms = indices * (time_scale_us / 1000)
 
-        return data
+        print(f"Collected {len(indices)} data points")
 
+        # Scale data as in the example
+        # Sensitivity values in LSB/g for each range
+        sensitivity = {2: 16384.0, 4: 8192.0, 8: 4096.0, 16: 2048.0}  # ±2g  # ±4g  # ±8g  # ±16g
+        scale = sensitivity.get(range, 4096.0)
+        ax = accel_x / scale
+        ay = accel_y / scale
+        az = accel_z / scale
+        a_total = np.sqrt(ax * ax + ay * ay + az * az)
+
+        # Create figure and subplots
+        plt.figure(figsize=(12, 10))
+
+        # Plot total acceleration
+        plt.subplot(2, 1, 1)
+        plt.plot(time_ms, a_total, "k-", label="Total")
+        plt.xlabel("Time (ms)")
+        plt.ylabel("Acceleration [g]")
+        plt.title("Accelerometer Data - Total")
+        plt.legend()
+        plt.grid(True)
+
+        # Plot X, Y, Z accelerations
+        plt.subplot(2, 1, 2)
+        plt.plot(time_ms, ax, "r-", label="X-Axis")
+        plt.plot(time_ms, ay, "g-", label="Y-Axis")
+        plt.plot(time_ms, az, "b-", label="Z-Axis")
+        plt.xlabel("Time (ms)")
+        plt.ylabel("Acceleration [g]")
+        plt.title("Accelerometer Data - X, Y, Z Components")
+        plt.legend()
+        plt.grid(True)
+
+        plt.tight_layout()
+        plt.savefig("accelerometer_data.png", dpi=1200)
+        plt.show()
+
+        print("Plot saved as 'accelerometer_data.png'")
+
+    except serial.SerialException as e:
+        print(f"Error with serial port: {e}")
     except Exception as e:
-        print(f"Error opening serial port: {e}")
-        return None
-
-
-def visualize_data(data, save_path=None):
-    """
-    Create visualization of accelerometer data
-    """
-    if not data or len(data) == 0:
-        print("No data to visualize")
-        return
-
-    # Extract time and acceleration values
-    indices = [row[0] for row in data]
-    accel_x = [row[1] for row in data]
-    accel_y = [row[2] for row in data]
-    accel_z = [row[3] for row in data]
-
-    # Calculate the magnitude of acceleration
-    accel_magnitude = [np.sqrt(x**2 + y**2 + z**2) for x, y, z in zip(accel_x, accel_y, accel_z)]
-
-    # Calculate the total acceleration
-    ax = np.array(accel_x) / 16384.0
-    ay = np.array(accel_y) / 16384.0
-    az = np.array(accel_z) / 16384.0
-
-    a_total = np.sqrt(ax * ax + ay * ay + az * az)
-
-    # Create figure and subplots
-    plt.figure(figsize=(12, 10))
-
-    # Plot total acceleration
-    plt.subplot(3, 1, 1)
-    plt.plot(indices, a_total, "k-")
-    plt.xlabel("Sample Index")
-    plt.ylabel("Acceleration [g]")
-    plt.title("Accelerometer Data - Total")
-    plt.legend()
-    plt.grid(True)
-
-    # Plot X, Y, Z accelerations
-    plt.subplot(3, 1, 2)
-    plt.plot(indices, accel_x, "r-", label="X-Axis")
-    plt.plot(indices, accel_y, "g-", label="Y-Axis")
-    plt.plot(indices, accel_z, "b-", label="Z-Axis")
-    plt.xlabel("Sample Index")
-    plt.ylabel("Acceleration (raw units)")
-    plt.title("Accelerometer Data - X, Y, Z Components")
-    plt.legend()
-    plt.grid(True)
-
-    # Plot magnitude
-    plt.subplot(3, 1, 3)
-    plt.plot(indices, accel_magnitude, "k-", linewidth=2)
-    plt.xlabel("Sample Index")
-    plt.ylabel("Acceleration Magnitude")
-    plt.title("Accelerometer Data - Magnitude")
-    plt.grid(True)
-
-    # Add annotation to highlight fall event
-    max_index = accel_magnitude.index(max(accel_magnitude))
-    plt.annotate("Peak Acceleration", xy=(max_index, accel_magnitude[max_index]), xytext=(max_index, accel_magnitude[max_index] * 0.8), arrowprops=dict(facecolor="black", shrink=0.05), horizontalalignment="center")
-
-    # Adjust layout
-    plt.tight_layout()
-
-    # Save figure if path provided
-    if save_path:
-        plt.savefig(save_path)
-        print(f"Graph saved to {save_path}")
-
-    # Show statistics
-    print(f"Maximum acceleration magnitude: {max(accel_magnitude):.2f} at sample {accel_magnitude.index(max(accel_magnitude))}")
-    print(f"Average acceleration magnitude: {sum(accel_magnitude)/len(accel_magnitude):.2f}")
-
-    # Show plot
-    plt.show()
-
-    return accel_magnitude
-
-
-def save_to_csv(data, filename):
-    """Save acceleration data to CSV file"""
-    with open(filename, "w", newline="") as csvfile:
-        csvwriter = csv.writer(csvfile)
-        csvwriter.writerow(["Index", "AccX", "AccY", "AccZ"])
-        csvwriter.writerows(data)
-    print(f"Data saved to {filename}")
-
-
-def main():
-    # Parse command line arguments
-    parser = argparse.ArgumentParser(description="Read and visualize accelerometer data from Arduino")
-    parser.add_argument("port", help="Serial port to connect to (e.g., COM3 or /dev/ttyUSB0)")
-    parser.add_argument("--baudrate", type=int, default=9600, help="Baud rate (default: 9600)")
-    parser.add_argument("--timeout", type=int, default=10, help="Timeout in seconds (default: 10)")
-    parser.add_argument("--plot-csv", default="./accel_data", help="Do not display graph")
-    parser.add_argument("--no-graph", action="store_true", help="Do not display graph")
-    parser.add_argument("--save-csv", action="store_true", help="Save data to CSV file")
-    parser.add_argument("--save-graph", action="store_true", help="Save graph to file")
-    parser.add_argument("--output-dir", default="./output", help="Directory to save output files (default: ./output)")
-
-    args = parser.parse_args()
-
-    # Create output directory if it doesn't exist
-    if (args.save_csv or args.save_graph) and not os.path.exists(args.output_dir):
-        os.makedirs(args.output_dir)
-
-    # Generate timestamp for file names
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-
-    # Read data from Arduino
-    if not args.plot_csv:
-        data = read_acceleration_data(args.port, args.baudrate, args.timeout)
-
-        if data:
-            print(f"Received {len(data)} data points")
-
-            # Save to CSV if requested
-            if args.save_csv:
-                csv_path = os.path.join(args.output_dir, f"accel_data_{timestamp}.csv")
-                save_to_csv(data, csv_path)
-
-            # Show graph if not disabled
-            if not args.no_graph:
-                graph_path = None
-                if args.save_graph:
-                    graph_path = os.path.join(args.output_dir, f"accel_graph_{timestamp}.png")
-
-                visualize_data(data, graph_path)
-        else:
-            print("Failed to get valid data from Arduino")
-            return 1
-    # else
-    # read data from csv
-
-    return 0
+        print(f"Unexpected error: {e}")
 
 
 if __name__ == "__main__":
-    exit(main())
+    parser = argparse.ArgumentParser(description="Serial Accelerometer Data Visualizer")
+    parser.add_argument("--port", type=str, help="Serial port (e.g., COM3 or /dev/ttyUSB0)")
+    parser.add_argument("--baud", type=int, default=115200, help="Baud rate (default: 115200)")
+    parser.add_argument("--range", type=int, default=8, help="MPU range (default: 8) [2, 4, 8, 18] g")
+
+    args = parser.parse_args()
+
+    if args.port:
+        read_and_plot_data(args.port, args.baud, args.range)
+    else:
+        print("Error: Please specify a serial port (--port)")
+        parser.print_help()
